@@ -1,0 +1,59 @@
+---
+layout: runbook
+title: '#4471 · two bugs, not one'
+owner: apan06
+status: open
+reviewed: 2026-10-30
+signature: apan06
+---
+
+<script>
+  import CauseTable from '#lib/kb/CauseTable.svelte';
+  import RenderStamp from '#lib/kb/RenderStamp.svelte';
+  import Callout from '#lib/kb/Callout.svelte';
+</script>
+
+[#4471](/kb/incidents/4471) is marked known, with one fix queued. Its reports describe two bugs.
+That one fix leaves the second bug in place.
+
+## What the reports show
+
+<CauseTable ticket={4471} />
+
+The table runs `causes.ts` over the export, after dropping the copies of a report that overlapping
+export pages create. The last column compares each cause with #4471. The hint bug now has its own
+ticket, listed below.
+
+## The two bugs
+
+- **`parser`:** the shared parser reads every date month first, so a day-first tenant's dates come
+  out flipped. This is the bug #4471 names.
+- **`hint`:** `booking-v3` prints `MM/DD/YYYY` under its date field, so people type month first, and
+  the form reads the date the tenant's way, day first. This happens only on the `form` channel, for
+  tenants on `booking-v3`.
+
+A parser fix changes how the shared parser reads dates. It does not change what `booking-v3` prints,
+so people on that form still type the month first.
+
+## Tickets
+
+Ticket links follow once the tickets are filed.
+
+## Why one ticket hid this
+
+<Callout kind="warn">
+Report text and intake tags cannot separate these bugs. Both bugs produce the same complaint, and
+intake tags come from the reporter's browser. Only the tenant and the channel separate them.
+</Callout>
+
+[Decision 0001](/kb/decisions/0001-dedupe-by-subject) merges on subject alone, so nobody had to read
+or look up anything. The decision stays as accepted; changing the rule takes a new record.
+
+## What we do not know
+
+The one-day reports in the table's note do not read like a flip. One describes clients in Lisbon and
+Toronto getting different days, which suggests a time zone. They stay under the cause of their
+tenant and channel, as the desk filed them. Nothing in the export shows what caused them, so check
+them again once the parser fix ships.
+
+<RenderStamp {signature} />
