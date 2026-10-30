@@ -37,7 +37,8 @@ so people on that form still type the month first.
 
 ## Tickets
 
-Ticket links follow once the tickets are filed.
+- [Shared parser reads dates month first](https://github.com/apan06/what-it-shows/issues/1): the `parser` row.
+- [`booking-v3` form hint says `MM/DD/YYYY`](https://github.com/apan06/what-it-shows/issues/2): the `hint` row.
 
 ## Why one ticket hid this
 
