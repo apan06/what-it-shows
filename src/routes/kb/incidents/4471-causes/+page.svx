@@ -2,7 +2,7 @@
 layout: runbook
 title: '#4471 · two bugs, not one'
 owner: apan06
-status: open
+status: closed
 reviewed: 2026-10-30
 signature: apan06
 ---
@@ -13,8 +13,8 @@ signature: apan06
   import Callout from '#lib/kb/Callout.svelte';
 </script>
 
-[#4471](/kb/incidents/4471) is marked known, with one fix queued. Its reports describe two bugs.
-That one fix leaves the second bug in place.
+[#4471](/kb/incidents/4471) was marked known, with one fix queued. Its reports describe two bugs.
+Engineering closed it on 5 October with a different outcome for each.
 
 ## What the reports show
 
@@ -32,13 +32,16 @@ ticket, listed below.
   the form reads the date the tenant's way, day first. This happens only on the `form` channel, for
   tenants on `booking-v3`.
 
-A parser fix changes how the shared parser reads dates. It does not change what `booking-v3` prints,
-so people on that form still type the month first.
+## Outcome
+
+- **`parser`: fixed.** `fix(dates): parse dd/mm for eu locales`.
+- **`hint`: won't fix.** The `booking-v3` form is retired, so its hint goes with it. The parser fix did
+  not address this bug.
 
 ## Tickets
 
-- [Shared parser reads dates month first](https://github.com/apan06/what-it-shows/issues/1): the `parser` row.
-- [`booking-v3` form hint says `MM/DD/YYYY`](https://github.com/apan06/what-it-shows/issues/2): the `hint` row.
+- [Shared parser reads dates month first](https://github.com/apan06/what-it-shows/issues/1): the `parser` row, closed as completed.
+- [`booking-v3` form hint says `MM/DD/YYYY`](https://github.com/apan06/what-it-shows/issues/2): the `hint` row, closed as not planned.
 
 ## Why one ticket hid this
 
@@ -54,7 +57,7 @@ or look up anything. The decision stays as accepted; changing the rule takes a n
 
 The one-day reports in the table's note do not read like a flip. One describes clients in Lisbon and
 Toronto getting different days, which suggests a time zone. They stay under the cause of their
-tenant and channel, as the desk filed them. Nothing in the export shows what caused them, so check
-them again once the parser fix ships.
+tenant and channel, as the desk filed them. Nothing in the export shows what caused them, and the
+fix changes how dates parse, so check whether they still come in.
 
 <RenderStamp {signature} />
