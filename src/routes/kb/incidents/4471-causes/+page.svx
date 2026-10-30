@@ -4,7 +4,7 @@ title: '#4471 · two bugs, not one'
 owner: apan06
 status: closed
 reviewed: 2026-10-30
-signature: apan06
+signature: v1.eyJzdWIiOiI1NzIxIiwiYXVkIjoiY2hhbGxlbmdlOndoYXQtaXQtc2hvd3MiLCJpYXQiOjE3OTMzNjQyOTQsImV4cCI6MTc5MzQ1MDY5NH0.Uo51Xx-BnynJqpFRAZsM1GYW5esoSQ_e1DZggXxMCNY
 ---
 
 <script>
